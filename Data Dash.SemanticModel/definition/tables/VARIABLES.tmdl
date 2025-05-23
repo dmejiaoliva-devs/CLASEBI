@@ -63,6 +63,18 @@ table VARIABLES
 		formatString: 0.00\ %;-0.00\ %;0.00\ %
 		lineageTag: 1a4b313a-2e53-4513-9066-11ff294a2cbe
 
+	measure TOTAL_LLAMAD = COUNTX( FILTER(call_log, call_log[Answered__Y_N_]="S"), call_log[Answered__Y_N_])
+		formatString: 0
+		lineageTag: d0c60c4f-4369-4c92-bc8a-0238ed060924
+
+	measure TOTAL_LLAMA_NO = COUNTX(FILTER(call_log,call_log[Answered__Y_N_]="N"), call_log[Answered__Y_N_])
+		formatString: 0
+		lineageTag: eed0392b-43db-420e-99a1-5256ca649819
+
+	measure TOTAL_LLAMADAS = [TOTAL_LLAMAD]+[TOTAL_LLAMA_NO]
+		formatString: 0
+		lineageTag: 5880f6ed-b03c-4501-ad8e-8b16986e8cf3
+
 	partition VARIABLES = m
 		mode: import
 		source =
